@@ -1,0 +1,523 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1"
+    xmlns:xmi="http://schema.omg.org/spec/XMI/2.1"
+    xmlns:uml="http://schema.omg.org/spec/UML/2.1">
+
+  <xmi:Documentation exporter="Enterprise Architect" exporterVersion="6.5"/>
+
+  <uml:Model xmi:type="uml:Model" name="EA_Model" visibility="public">
+
+    <packagedElement xmi:type="uml:Package"
+                     xmi:id="{AB100000-0000-0000-0000-000000000001}"
+                     name="Administrateur"
+                     visibility="public">
+
+      <!-- ACTEURS -->
+      <packagedElement xmi:type="uml:Actor"
+                       xmi:id="{AA100000-0000-0000-0000-000000000001}"
+                       name="Administrateur"
+                       visibility="public"/>
+      <packagedElement xmi:type="uml:Actor"
+                       xmi:id="{AA100000-0000-0000-0000-000000000002}"
+                       name="Serveur Mail"
+                       visibility="public"/>
+
+      <!-- PACKAGE : Fonctions communes (héritées) -->
+      <packagedElement xmi:type="uml:Package"
+                       xmi:id="{AB100000-0000-0000-0000-000000000002}"
+                       name="Fonctions communes (héritées)"
+                       visibility="public">
+        <packagedElement xmi:type="uml:UseCase"
+                         xmi:id="{AC100000-0000-0000-0000-000000000001}"
+                         name="Voir utilisateur_standard"
+                         visibility="public"/>
+      </packagedElement>
+
+      <!-- PACKAGE : Produits et Catégories -->
+      <packagedElement xmi:type="uml:Package"
+                       xmi:id="{AB100000-0000-0000-0000-000000000003}"
+                       name="Produits et Catégories"
+                       visibility="public">
+        <packagedElement xmi:type="uml:UseCase"
+                         xmi:id="{AC100000-0000-0000-0000-000000000002}"
+                         name="Créer un produit"
+                         visibility="public"/>
+        <packagedElement xmi:type="uml:UseCase"
+                         xmi:id="{AC100000-0000-0000-0000-000000000003}"
+                         name="Modifier un produit"
+                         visibility="public"/>
+        <packagedElement xmi:type="uml:UseCase"
+                         xmi:id="{AC100000-0000-0000-0000-000000000004}"
+                         name="Désactiver / Réactiver un produit"
+                         visibility="public"/>
+        <packagedElement xmi:type="uml:UseCase"
+                         xmi:id="{AC100000-0000-0000-0000-000000000005}"
+                         name="Gérer les catégories"
+                         visibility="public"/>
+      </packagedElement>
+
+      <!-- PACKAGE : Stock et Approvisionnement -->
+      <packagedElement xmi:type="uml:Package"
+                       xmi:id="{AB100000-0000-0000-0000-000000000004}"
+                       name="Stock et Approvisionnement"
+                       visibility="public">
+        <packagedElement xmi:type="uml:UseCase"
+                         xmi:id="{AC100000-0000-0000-0000-000000000006}"
+                         name="Enregistrer un approvisionnement"
+                         visibility="public"/>
+        <packagedElement xmi:type="uml:UseCase"
+                         xmi:id="{AC100000-0000-0000-0000-000000000007}"
+                         name="Consulter l'historique des approvisionnements"
+                         visibility="public"/>
+        <!-- UC_NOTIF_CLIENT : extend UC_APPRO -->
+        <packagedElement xmi:type="uml:UseCase"
+                         xmi:id="{AC100000-0000-0000-0000-000000000008}"
+                         name="Notifier le client"
+                         visibility="public">
+          <extend xmi:type="uml:Extend"
+                  xmi:id="{AE100000-0000-0000-0000-000000000001}"
+                  name=""
+                  extendedCase="{AC100000-0000-0000-0000-000000000006}"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:UseCase"
+                         xmi:id="{AC100000-0000-0000-0000-000000000009}"
+                         name="Consulter les mouvements de stock"
+                         visibility="public"/>
+      </packagedElement>
+
+      <!-- PACKAGE : Inventaire -->
+      <packagedElement xmi:type="uml:Package"
+                       xmi:id="{AB100000-0000-0000-0000-000000000005}"
+                       name="Inventaire"
+                       visibility="public">
+        <packagedElement xmi:type="uml:UseCase"
+                         xmi:id="{AC100000-0000-0000-0000-000000000010}"
+                         name="Consulter les inventaires (en attente)"
+                         visibility="public"/>
+        <!-- UC_INV_VAL : include UC_STOCK -->
+        <packagedElement xmi:type="uml:UseCase"
+                         xmi:id="{AC100000-0000-0000-0000-000000000011}"
+                         name="Valider un inventaire"
+                         visibility="public">
+          <include xmi:type="uml:Include"
+                   xmi:id="{AD100000-0000-0000-0000-000000000001}"
+                   name=""
+                   addition="{AC100000-0000-0000-0000-000000000009}"/>
+        </packagedElement>
+        <!-- UC_INV_REJ : include UC_STOCK -->
+        <packagedElement xmi:type="uml:UseCase"
+                         xmi:id="{AC100000-0000-0000-0000-000000000012}"
+                         name="Refuser un inventaire"
+                         visibility="public">
+          <include xmi:type="uml:Include"
+                   xmi:id="{AD100000-0000-0000-0000-000000000002}"
+                   name=""
+                   addition="{AC100000-0000-0000-0000-000000000009}"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:UseCase"
+                         xmi:id="{AC100000-0000-0000-0000-000000000013}"
+                         name="Consulter l'historique des inventaires"
+                         visibility="public"/>
+      </packagedElement>
+
+      <!-- PACKAGE : Pertes -->
+      <packagedElement xmi:type="uml:Package"
+                       xmi:id="{AB100000-0000-0000-0000-000000000006}"
+                       name="Pertes"
+                       visibility="public">
+        <packagedElement xmi:type="uml:UseCase"
+                         xmi:id="{AC100000-0000-0000-0000-000000000014}"
+                         name="Déclarer une perte (côté admin)"
+                         visibility="public"/>
+        <!-- UC_PERTE_VAL : include UC_STOCK -->
+        <packagedElement xmi:type="uml:UseCase"
+                         xmi:id="{AC100000-0000-0000-0000-000000000015}"
+                         name="Valider une perte"
+                         visibility="public">
+          <include xmi:type="uml:Include"
+                   xmi:id="{AD100000-0000-0000-0000-000000000003}"
+                   name=""
+                   addition="{AC100000-0000-0000-0000-000000000009}"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:UseCase"
+                         xmi:id="{AC100000-0000-0000-0000-000000000016}"
+                         name="Refuser une perte"
+                         visibility="public"/>
+        <packagedElement xmi:type="uml:UseCase"
+                         xmi:id="{AC100000-0000-0000-0000-000000000017}"
+                         name="Consulter l'historique des pertes"
+                         visibility="public"/>
+      </packagedElement>
+
+      <!-- PACKAGE : Clients et Fournisseurs -->
+      <packagedElement xmi:type="uml:Package"
+                       xmi:id="{AB100000-0000-0000-0000-000000000007}"
+                       name="Clients et Fournisseurs"
+                       visibility="public">
+        <packagedElement xmi:type="uml:UseCase"
+                         xmi:id="{AC100000-0000-0000-0000-000000000018}"
+                         name="Gérer les clients (CRUD)"
+                         visibility="public"/>
+        <packagedElement xmi:type="uml:UseCase"
+                         xmi:id="{AC100000-0000-0000-0000-000000000019}"
+                         name="Enregistrer un fournisseur"
+                         visibility="public"/>
+        <packagedElement xmi:type="uml:UseCase"
+                         xmi:id="{AC100000-0000-0000-0000-000000000020}"
+                         name="Modifier un fournisseur"
+                         visibility="public"/>
+        <packagedElement xmi:type="uml:UseCase"
+                         xmi:id="{AC100000-0000-0000-0000-000000000021}"
+                         name="Désactiver / Réactiver un fournisseur"
+                         visibility="public"/>
+      </packagedElement>
+
+      <!-- PACKAGE : Dépôts -->
+      <packagedElement xmi:type="uml:Package"
+                       xmi:id="{AB100000-0000-0000-0000-000000000008}"
+                       name="Dépôts"
+                       visibility="public">
+        <packagedElement xmi:type="uml:UseCase"
+                         xmi:id="{AC100000-0000-0000-0000-000000000022}"
+                         name="Ajouter un dépôt"
+                         visibility="public"/>
+        <packagedElement xmi:type="uml:UseCase"
+                         xmi:id="{AC100000-0000-0000-0000-000000000023}"
+                         name="Modifier un dépôt"
+                         visibility="public"/>
+        <packagedElement xmi:type="uml:UseCase"
+                         xmi:id="{AC100000-0000-0000-0000-000000000024}"
+                         name="Activer / désactiver un dépôt"
+                         visibility="public"/>
+      </packagedElement>
+
+      <!-- PACKAGE : Utilisateurs -->
+      <packagedElement xmi:type="uml:Package"
+                       xmi:id="{AB100000-0000-0000-0000-000000000009}"
+                       name="Utilisateurs"
+                       visibility="public">
+        <packagedElement xmi:type="uml:UseCase"
+                         xmi:id="{AC100000-0000-0000-0000-000000000025}"
+                         name="Enregistrer un vendeur ou administrateur"
+                         visibility="public"/>
+        <packagedElement xmi:type="uml:UseCase"
+                         xmi:id="{AC100000-0000-0000-0000-000000000026}"
+                         name="Modifier un utilisateur"
+                         visibility="public"/>
+        <packagedElement xmi:type="uml:UseCase"
+                         xmi:id="{AC100000-0000-0000-0000-000000000027}"
+                         name="Activer / désactiver un vendeur"
+                         visibility="public"/>
+        <packagedElement xmi:type="uml:UseCase"
+                         xmi:id="{AC100000-0000-0000-0000-000000000028}"
+                         name="Retirer / désactiver un vendeur"
+                         visibility="public"/>
+      </packagedElement>
+
+      <!-- PACKAGE : Finances -->
+      <packagedElement xmi:type="uml:Package"
+                       xmi:id="{AB100000-0000-0000-0000-000000000010}"
+                       name="Finances"
+                       visibility="public">
+        <packagedElement xmi:type="uml:UseCase"
+                         xmi:id="{AC100000-0000-0000-0000-000000000029}"
+                         name="Gérer les lettres d'échange"
+                         visibility="public"/>
+        <packagedElement xmi:type="uml:UseCase"
+                         xmi:id="{AC100000-0000-0000-0000-000000000030}"
+                         name="Suivre les créances de l'entreprise"
+                         visibility="public"/>
+        <!-- UC_RELEVE : extend UC_CREANCES -->
+        <packagedElement xmi:type="uml:UseCase"
+                         xmi:id="{AC100000-0000-0000-0000-000000000031}"
+                         name="Générer relevé de dettes"
+                         visibility="public">
+          <extend xmi:type="uml:Extend"
+                  xmi:id="{AE100000-0000-0000-0000-000000000002}"
+                  name=""
+                  extendedCase="{AC100000-0000-0000-0000-000000000030}"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:UseCase"
+                         xmi:id="{AC100000-0000-0000-0000-000000000032}"
+                         name="Enregistrer un paiement sur crédit"
+                         visibility="public"/>
+      </packagedElement>
+
+      <!-- PACKAGE : Rapports et Exports -->
+      <packagedElement xmi:type="uml:Package"
+                       xmi:id="{AB100000-0000-0000-0000-000000000011}"
+                       name="Rapports et Exports"
+                       visibility="public">
+        <packagedElement xmi:type="uml:UseCase"
+                         xmi:id="{AC100000-0000-0000-0000-000000000033}"
+                         name="Visualiser tous les rapports"
+                         visibility="public"/>
+        <!-- UC_EXPORT : include UC_RAPPORT -->
+        <packagedElement xmi:type="uml:UseCase"
+                         xmi:id="{AC100000-0000-0000-0000-000000000034}"
+                         name="Exporter un rapport (PDF / Excel)"
+                         visibility="public">
+          <include xmi:type="uml:Include"
+                   xmi:id="{AD100000-0000-0000-0000-000000000004}"
+                   name=""
+                   addition="{AC100000-0000-0000-0000-000000000033}"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:UseCase"
+                         xmi:id="{AC100000-0000-0000-0000-000000000035}"
+                         name="Comparer les performances dans une entreprise"
+                         visibility="public"/>
+        <packagedElement xmi:type="uml:UseCase"
+                         xmi:id="{AC100000-0000-0000-0000-000000000036}"
+                         name="Importer des données"
+                         visibility="public"/>
+      </packagedElement>
+
+      <!-- PACKAGE : Alertes -->
+      <packagedElement xmi:type="uml:Package"
+                       xmi:id="{AB100000-0000-0000-0000-000000000012}"
+                       name="Alertes"
+                       visibility="public">
+        <!-- UC_ALERT : include UC_STOCK -->
+        <packagedElement xmi:type="uml:UseCase"
+                         xmi:id="{AC100000-0000-0000-0000-000000000037}"
+                         name="Alerter au seuil de stock atteint"
+                         visibility="public">
+          <include xmi:type="uml:Include"
+                   xmi:id="{AD100000-0000-0000-0000-000000000005}"
+                   name=""
+                   addition="{AC100000-0000-0000-0000-000000000009}"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:UseCase"
+                         xmi:id="{AC100000-0000-0000-0000-000000000038}"
+                         name="Consulter les alertes"
+                         visibility="public"/>
+      </packagedElement>
+
+      <!-- ASSOCIATIONS : Administrateur → Cas d'utilisation -->
+      <packagedElement xmi:type="uml:Association" xmi:id="{AF100000-0000-0000-0000-000000000001}" name="" visibility="public">
+        <memberEnd xmi:idref="{A0100000-0000-0000-0000-000000000001}"/>
+        <memberEnd xmi:idref="{A0100000-0000-0000-0000-000000000002}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{A0100000-0000-0000-0000-000000000001}" name="" visibility="public" type="{AA100000-0000-0000-0000-000000000001}" association="{AF100000-0000-0000-0000-000000000001}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{A0100000-0000-0000-0000-000000000002}" name="" visibility="public" type="{AC100000-0000-0000-0000-000000000001}" association="{AF100000-0000-0000-0000-000000000001}"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="{AF100000-0000-0000-0000-000000000002}" name="" visibility="public">
+        <memberEnd xmi:idref="{A0100000-0000-0000-0000-000000000003}"/>
+        <memberEnd xmi:idref="{A0100000-0000-0000-0000-000000000004}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{A0100000-0000-0000-0000-000000000003}" name="" visibility="public" type="{AA100000-0000-0000-0000-000000000001}" association="{AF100000-0000-0000-0000-000000000002}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{A0100000-0000-0000-0000-000000000004}" name="" visibility="public" type="{AC100000-0000-0000-0000-000000000002}" association="{AF100000-0000-0000-0000-000000000002}"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="{AF100000-0000-0000-0000-000000000003}" name="" visibility="public">
+        <memberEnd xmi:idref="{A0100000-0000-0000-0000-000000000005}"/>
+        <memberEnd xmi:idref="{A0100000-0000-0000-0000-000000000006}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{A0100000-0000-0000-0000-000000000005}" name="" visibility="public" type="{AA100000-0000-0000-0000-000000000001}" association="{AF100000-0000-0000-0000-000000000003}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{A0100000-0000-0000-0000-000000000006}" name="" visibility="public" type="{AC100000-0000-0000-0000-000000000003}" association="{AF100000-0000-0000-0000-000000000003}"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="{AF100000-0000-0000-0000-000000000004}" name="" visibility="public">
+        <memberEnd xmi:idref="{A0100000-0000-0000-0000-000000000007}"/>
+        <memberEnd xmi:idref="{A0100000-0000-0000-0000-000000000008}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{A0100000-0000-0000-0000-000000000007}" name="" visibility="public" type="{AA100000-0000-0000-0000-000000000001}" association="{AF100000-0000-0000-0000-000000000004}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{A0100000-0000-0000-0000-000000000008}" name="" visibility="public" type="{AC100000-0000-0000-0000-000000000004}" association="{AF100000-0000-0000-0000-000000000004}"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="{AF100000-0000-0000-0000-000000000005}" name="" visibility="public">
+        <memberEnd xmi:idref="{A0100000-0000-0000-0000-000000000009}"/>
+        <memberEnd xmi:idref="{A0100000-0000-0000-0000-000000000010}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{A0100000-0000-0000-0000-000000000009}" name="" visibility="public" type="{AA100000-0000-0000-0000-000000000001}" association="{AF100000-0000-0000-0000-000000000005}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{A0100000-0000-0000-0000-000000000010}" name="" visibility="public" type="{AC100000-0000-0000-0000-000000000005}" association="{AF100000-0000-0000-0000-000000000005}"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="{AF100000-0000-0000-0000-000000000006}" name="" visibility="public">
+        <memberEnd xmi:idref="{A0100000-0000-0000-0000-000000000011}"/>
+        <memberEnd xmi:idref="{A0100000-0000-0000-0000-000000000012}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{A0100000-0000-0000-0000-000000000011}" name="" visibility="public" type="{AA100000-0000-0000-0000-000000000001}" association="{AF100000-0000-0000-0000-000000000006}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{A0100000-0000-0000-0000-000000000012}" name="" visibility="public" type="{AC100000-0000-0000-0000-000000000006}" association="{AF100000-0000-0000-0000-000000000006}"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="{AF100000-0000-0000-0000-000000000007}" name="" visibility="public">
+        <memberEnd xmi:idref="{A0100000-0000-0000-0000-000000000013}"/>
+        <memberEnd xmi:idref="{A0100000-0000-0000-0000-000000000014}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{A0100000-0000-0000-0000-000000000013}" name="" visibility="public" type="{AA100000-0000-0000-0000-000000000001}" association="{AF100000-0000-0000-0000-000000000007}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{A0100000-0000-0000-0000-000000000014}" name="" visibility="public" type="{AC100000-0000-0000-0000-000000000007}" association="{AF100000-0000-0000-0000-000000000007}"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="{AF100000-0000-0000-0000-000000000008}" name="" visibility="public">
+        <memberEnd xmi:idref="{A0100000-0000-0000-0000-000000000015}"/>
+        <memberEnd xmi:idref="{A0100000-0000-0000-0000-000000000016}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{A0100000-0000-0000-0000-000000000015}" name="" visibility="public" type="{AA100000-0000-0000-0000-000000000001}" association="{AF100000-0000-0000-0000-000000000008}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{A0100000-0000-0000-0000-000000000016}" name="" visibility="public" type="{AC100000-0000-0000-0000-000000000009}" association="{AF100000-0000-0000-0000-000000000008}"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="{AF100000-0000-0000-0000-000000000009}" name="" visibility="public">
+        <memberEnd xmi:idref="{A0100000-0000-0000-0000-000000000017}"/>
+        <memberEnd xmi:idref="{A0100000-0000-0000-0000-000000000018}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{A0100000-0000-0000-0000-000000000017}" name="" visibility="public" type="{AA100000-0000-0000-0000-000000000001}" association="{AF100000-0000-0000-0000-000000000009}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{A0100000-0000-0000-0000-000000000018}" name="" visibility="public" type="{AC100000-0000-0000-0000-000000000010}" association="{AF100000-0000-0000-0000-000000000009}"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="{AF100000-0000-0000-0000-000000000010}" name="" visibility="public">
+        <memberEnd xmi:idref="{A0100000-0000-0000-0000-000000000019}"/>
+        <memberEnd xmi:idref="{A0100000-0000-0000-0000-000000000020}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{A0100000-0000-0000-0000-000000000019}" name="" visibility="public" type="{AA100000-0000-0000-0000-000000000001}" association="{AF100000-0000-0000-0000-000000000010}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{A0100000-0000-0000-0000-000000000020}" name="" visibility="public" type="{AC100000-0000-0000-0000-000000000011}" association="{AF100000-0000-0000-0000-000000000010}"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="{AF100000-0000-0000-0000-000000000011}" name="" visibility="public">
+        <memberEnd xmi:idref="{A0100000-0000-0000-0000-000000000021}"/>
+        <memberEnd xmi:idref="{A0100000-0000-0000-0000-000000000022}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{A0100000-0000-0000-0000-000000000021}" name="" visibility="public" type="{AA100000-0000-0000-0000-000000000001}" association="{AF100000-0000-0000-0000-000000000011}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{A0100000-0000-0000-0000-000000000022}" name="" visibility="public" type="{AC100000-0000-0000-0000-000000000012}" association="{AF100000-0000-0000-0000-000000000011}"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="{AF100000-0000-0000-0000-000000000012}" name="" visibility="public">
+        <memberEnd xmi:idref="{A0100000-0000-0000-0000-000000000023}"/>
+        <memberEnd xmi:idref="{A0100000-0000-0000-0000-000000000024}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{A0100000-0000-0000-0000-000000000023}" name="" visibility="public" type="{AA100000-0000-0000-0000-000000000001}" association="{AF100000-0000-0000-0000-000000000012}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{A0100000-0000-0000-0000-000000000024}" name="" visibility="public" type="{AC100000-0000-0000-0000-000000000013}" association="{AF100000-0000-0000-0000-000000000012}"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="{AF100000-0000-0000-0000-000000000013}" name="" visibility="public">
+        <memberEnd xmi:idref="{A0100000-0000-0000-0000-000000000025}"/>
+        <memberEnd xmi:idref="{A0100000-0000-0000-0000-000000000026}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{A0100000-0000-0000-0000-000000000025}" name="" visibility="public" type="{AA100000-0000-0000-0000-000000000001}" association="{AF100000-0000-0000-0000-000000000013}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{A0100000-0000-0000-0000-000000000026}" name="" visibility="public" type="{AC100000-0000-0000-0000-000000000014}" association="{AF100000-0000-0000-0000-000000000013}"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="{AF100000-0000-0000-0000-000000000014}" name="" visibility="public">
+        <memberEnd xmi:idref="{A0100000-0000-0000-0000-000000000027}"/>
+        <memberEnd xmi:idref="{A0100000-0000-0000-0000-000000000028}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{A0100000-0000-0000-0000-000000000027}" name="" visibility="public" type="{AA100000-0000-0000-0000-000000000001}" association="{AF100000-0000-0000-0000-000000000014}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{A0100000-0000-0000-0000-000000000028}" name="" visibility="public" type="{AC100000-0000-0000-0000-000000000015}" association="{AF100000-0000-0000-0000-000000000014}"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="{AF100000-0000-0000-0000-000000000015}" name="" visibility="public">
+        <memberEnd xmi:idref="{A0100000-0000-0000-0000-000000000029}"/>
+        <memberEnd xmi:idref="{A0100000-0000-0000-0000-000000000030}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{A0100000-0000-0000-0000-000000000029}" name="" visibility="public" type="{AA100000-0000-0000-0000-000000000001}" association="{AF100000-0000-0000-0000-000000000015}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{A0100000-0000-0000-0000-000000000030}" name="" visibility="public" type="{AC100000-0000-0000-0000-000000000016}" association="{AF100000-0000-0000-0000-000000000015}"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="{AF100000-0000-0000-0000-000000000016}" name="" visibility="public">
+        <memberEnd xmi:idref="{A0100000-0000-0000-0000-000000000031}"/>
+        <memberEnd xmi:idref="{A0100000-0000-0000-0000-000000000032}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{A0100000-0000-0000-0000-000000000031}" name="" visibility="public" type="{AA100000-0000-0000-0000-000000000001}" association="{AF100000-0000-0000-0000-000000000016}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{A0100000-0000-0000-0000-000000000032}" name="" visibility="public" type="{AC100000-0000-0000-0000-000000000017}" association="{AF100000-0000-0000-0000-000000000016}"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="{AF100000-0000-0000-0000-000000000017}" name="" visibility="public">
+        <memberEnd xmi:idref="{A0100000-0000-0000-0000-000000000033}"/>
+        <memberEnd xmi:idref="{A0100000-0000-0000-0000-000000000034}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{A0100000-0000-0000-0000-000000000033}" name="" visibility="public" type="{AA100000-0000-0000-0000-000000000001}" association="{AF100000-0000-0000-0000-000000000017}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{A0100000-0000-0000-0000-000000000034}" name="" visibility="public" type="{AC100000-0000-0000-0000-000000000018}" association="{AF100000-0000-0000-0000-000000000017}"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="{AF100000-0000-0000-0000-000000000018}" name="" visibility="public">
+        <memberEnd xmi:idref="{A0100000-0000-0000-0000-000000000035}"/>
+        <memberEnd xmi:idref="{A0100000-0000-0000-0000-000000000036}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{A0100000-0000-0000-0000-000000000035}" name="" visibility="public" type="{AA100000-0000-0000-0000-000000000001}" association="{AF100000-0000-0000-0000-000000000018}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{A0100000-0000-0000-0000-000000000036}" name="" visibility="public" type="{AC100000-0000-0000-0000-000000000019}" association="{AF100000-0000-0000-0000-000000000018}"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="{AF100000-0000-0000-0000-000000000019}" name="" visibility="public">
+        <memberEnd xmi:idref="{A0100000-0000-0000-0000-000000000037}"/>
+        <memberEnd xmi:idref="{A0100000-0000-0000-0000-000000000038}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{A0100000-0000-0000-0000-000000000037}" name="" visibility="public" type="{AA100000-0000-0000-0000-000000000001}" association="{AF100000-0000-0000-0000-000000000019}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{A0100000-0000-0000-0000-000000000038}" name="" visibility="public" type="{AC100000-0000-0000-0000-000000000020}" association="{AF100000-0000-0000-0000-000000000019}"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="{AF100000-0000-0000-0000-000000000020}" name="" visibility="public">
+        <memberEnd xmi:idref="{A0100000-0000-0000-0000-000000000039}"/>
+        <memberEnd xmi:idref="{A0100000-0000-0000-0000-000000000040}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{A0100000-0000-0000-0000-000000000039}" name="" visibility="public" type="{AA100000-0000-0000-0000-000000000001}" association="{AF100000-0000-0000-0000-000000000020}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{A0100000-0000-0000-0000-000000000040}" name="" visibility="public" type="{AC100000-0000-0000-0000-000000000021}" association="{AF100000-0000-0000-0000-000000000020}"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="{AF100000-0000-0000-0000-000000000021}" name="" visibility="public">
+        <memberEnd xmi:idref="{A0100000-0000-0000-0000-000000000041}"/>
+        <memberEnd xmi:idref="{A0100000-0000-0000-0000-000000000042}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{A0100000-0000-0000-0000-000000000041}" name="" visibility="public" type="{AA100000-0000-0000-0000-000000000001}" association="{AF100000-0000-0000-0000-000000000021}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{A0100000-0000-0000-0000-000000000042}" name="" visibility="public" type="{AC100000-0000-0000-0000-000000000022}" association="{AF100000-0000-0000-0000-000000000021}"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="{AF100000-0000-0000-0000-000000000022}" name="" visibility="public">
+        <memberEnd xmi:idref="{A0100000-0000-0000-0000-000000000043}"/>
+        <memberEnd xmi:idref="{A0100000-0000-0000-0000-000000000044}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{A0100000-0000-0000-0000-000000000043}" name="" visibility="public" type="{AA100000-0000-0000-0000-000000000001}" association="{AF100000-0000-0000-0000-000000000022}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{A0100000-0000-0000-0000-000000000044}" name="" visibility="public" type="{AC100000-0000-0000-0000-000000000023}" association="{AF100000-0000-0000-0000-000000000022}"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="{AF100000-0000-0000-0000-000000000023}" name="" visibility="public">
+        <memberEnd xmi:idref="{A0100000-0000-0000-0000-000000000045}"/>
+        <memberEnd xmi:idref="{A0100000-0000-0000-0000-000000000046}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{A0100000-0000-0000-0000-000000000045}" name="" visibility="public" type="{AA100000-0000-0000-0000-000000000001}" association="{AF100000-0000-0000-0000-000000000023}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{A0100000-0000-0000-0000-000000000046}" name="" visibility="public" type="{AC100000-0000-0000-0000-000000000024}" association="{AF100000-0000-0000-0000-000000000023}"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="{AF100000-0000-0000-0000-000000000024}" name="" visibility="public">
+        <memberEnd xmi:idref="{A0100000-0000-0000-0000-000000000047}"/>
+        <memberEnd xmi:idref="{A0100000-0000-0000-0000-000000000048}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{A0100000-0000-0000-0000-000000000047}" name="" visibility="public" type="{AA100000-0000-0000-0000-000000000001}" association="{AF100000-0000-0000-0000-000000000024}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{A0100000-0000-0000-0000-000000000048}" name="" visibility="public" type="{AC100000-0000-0000-0000-000000000025}" association="{AF100000-0000-0000-0000-000000000024}"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="{AF100000-0000-0000-0000-000000000025}" name="" visibility="public">
+        <memberEnd xmi:idref="{A0100000-0000-0000-0000-000000000049}"/>
+        <memberEnd xmi:idref="{A0100000-0000-0000-0000-000000000050}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{A0100000-0000-0000-0000-000000000049}" name="" visibility="public" type="{AA100000-0000-0000-0000-000000000001}" association="{AF100000-0000-0000-0000-000000000025}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{A0100000-0000-0000-0000-000000000050}" name="" visibility="public" type="{AC100000-0000-0000-0000-000000000026}" association="{AF100000-0000-0000-0000-000000000025}"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="{AF100000-0000-0000-0000-000000000026}" name="" visibility="public">
+        <memberEnd xmi:idref="{A0100000-0000-0000-0000-000000000051}"/>
+        <memberEnd xmi:idref="{A0100000-0000-0000-0000-000000000052}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{A0100000-0000-0000-0000-000000000051}" name="" visibility="public" type="{AA100000-0000-0000-0000-000000000001}" association="{AF100000-0000-0000-0000-000000000026}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{A0100000-0000-0000-0000-000000000052}" name="" visibility="public" type="{AC100000-0000-0000-0000-000000000027}" association="{AF100000-0000-0000-0000-000000000026}"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="{AF100000-0000-0000-0000-000000000027}" name="" visibility="public">
+        <memberEnd xmi:idref="{A0100000-0000-0000-0000-000000000053}"/>
+        <memberEnd xmi:idref="{A0100000-0000-0000-0000-000000000054}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{A0100000-0000-0000-0000-000000000053}" name="" visibility="public" type="{AA100000-0000-0000-0000-000000000001}" association="{AF100000-0000-0000-0000-000000000027}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{A0100000-0000-0000-0000-000000000054}" name="" visibility="public" type="{AC100000-0000-0000-0000-000000000028}" association="{AF100000-0000-0000-0000-000000000027}"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="{AF100000-0000-0000-0000-000000000028}" name="" visibility="public">
+        <memberEnd xmi:idref="{A0100000-0000-0000-0000-000000000055}"/>
+        <memberEnd xmi:idref="{A0100000-0000-0000-0000-000000000056}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{A0100000-0000-0000-0000-000000000055}" name="" visibility="public" type="{AA100000-0000-0000-0000-000000000001}" association="{AF100000-0000-0000-0000-000000000028}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{A0100000-0000-0000-0000-000000000056}" name="" visibility="public" type="{AC100000-0000-0000-0000-000000000029}" association="{AF100000-0000-0000-0000-000000000028}"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="{AF100000-0000-0000-0000-000000000029}" name="" visibility="public">
+        <memberEnd xmi:idref="{A0100000-0000-0000-0000-000000000057}"/>
+        <memberEnd xmi:idref="{A0100000-0000-0000-0000-000000000058}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{A0100000-0000-0000-0000-000000000057}" name="" visibility="public" type="{AA100000-0000-0000-0000-000000000001}" association="{AF100000-0000-0000-0000-000000000029}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{A0100000-0000-0000-0000-000000000058}" name="" visibility="public" type="{AC100000-0000-0000-0000-000000000030}" association="{AF100000-0000-0000-0000-000000000029}"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="{AF100000-0000-0000-0000-000000000030}" name="" visibility="public">
+        <memberEnd xmi:idref="{A0100000-0000-0000-0000-000000000059}"/>
+        <memberEnd xmi:idref="{A0100000-0000-0000-0000-000000000060}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{A0100000-0000-0000-0000-000000000059}" name="" visibility="public" type="{AA100000-0000-0000-0000-000000000001}" association="{AF100000-0000-0000-0000-000000000030}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{A0100000-0000-0000-0000-000000000060}" name="" visibility="public" type="{AC100000-0000-0000-0000-000000000031}" association="{AF100000-0000-0000-0000-000000000030}"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="{AF100000-0000-0000-0000-000000000031}" name="" visibility="public">
+        <memberEnd xmi:idref="{A0100000-0000-0000-0000-000000000061}"/>
+        <memberEnd xmi:idref="{A0100000-0000-0000-0000-000000000062}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{A0100000-0000-0000-0000-000000000061}" name="" visibility="public" type="{AA100000-0000-0000-0000-000000000001}" association="{AF100000-0000-0000-0000-000000000031}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{A0100000-0000-0000-0000-000000000062}" name="" visibility="public" type="{AC100000-0000-0000-0000-000000000032}" association="{AF100000-0000-0000-0000-000000000031}"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="{AF100000-0000-0000-0000-000000000032}" name="" visibility="public">
+        <memberEnd xmi:idref="{A0100000-0000-0000-0000-000000000063}"/>
+        <memberEnd xmi:idref="{A0100000-0000-0000-0000-000000000064}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{A0100000-0000-0000-0000-000000000063}" name="" visibility="public" type="{AA100000-0000-0000-0000-000000000001}" association="{AF100000-0000-0000-0000-000000000032}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{A0100000-0000-0000-0000-000000000064}" name="" visibility="public" type="{AC100000-0000-0000-0000-000000000033}" association="{AF100000-0000-0000-0000-000000000032}"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="{AF100000-0000-0000-0000-000000000033}" name="" visibility="public">
+        <memberEnd xmi:idref="{A0100000-0000-0000-0000-000000000065}"/>
+        <memberEnd xmi:idref="{A0100000-0000-0000-0000-000000000066}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{A0100000-0000-0000-0000-000000000065}" name="" visibility="public" type="{AA100000-0000-0000-0000-000000000001}" association="{AF100000-0000-0000-0000-000000000033}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{A0100000-0000-0000-0000-000000000066}" name="" visibility="public" type="{AC100000-0000-0000-0000-000000000034}" association="{AF100000-0000-0000-0000-000000000033}"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="{AF100000-0000-0000-0000-000000000034}" name="" visibility="public">
+        <memberEnd xmi:idref="{A0100000-0000-0000-0000-000000000067}"/>
+        <memberEnd xmi:idref="{A0100000-0000-0000-0000-000000000068}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{A0100000-0000-0000-0000-000000000067}" name="" visibility="public" type="{AA100000-0000-0000-0000-000000000001}" association="{AF100000-0000-0000-0000-000000000034}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{A0100000-0000-0000-0000-000000000068}" name="" visibility="public" type="{AC100000-0000-0000-0000-000000000035}" association="{AF100000-0000-0000-0000-000000000034}"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="{AF100000-0000-0000-0000-000000000035}" name="" visibility="public">
+        <memberEnd xmi:idref="{A0100000-0000-0000-0000-000000000069}"/>
+        <memberEnd xmi:idref="{A0100000-0000-0000-0000-000000000070}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{A0100000-0000-0000-0000-000000000069}" name="" visibility="public" type="{AA100000-0000-0000-0000-000000000001}" association="{AF100000-0000-0000-0000-000000000035}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{A0100000-0000-0000-0000-000000000070}" name="" visibility="public" type="{AC100000-0000-0000-0000-000000000036}" association="{AF100000-0000-0000-0000-000000000035}"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="{AF100000-0000-0000-0000-000000000036}" name="" visibility="public">
+        <memberEnd xmi:idref="{A0100000-0000-0000-0000-000000000071}"/>
+        <memberEnd xmi:idref="{A0100000-0000-0000-0000-000000000072}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{A0100000-0000-0000-0000-000000000071}" name="" visibility="public" type="{AA100000-0000-0000-0000-000000000001}" association="{AF100000-0000-0000-0000-000000000036}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{A0100000-0000-0000-0000-000000000072}" name="" visibility="public" type="{AC100000-0000-0000-0000-000000000038}" association="{AF100000-0000-0000-0000-000000000036}"/>
+      </packagedElement>
+      <!-- UC_ALERT → Serveur Mail -->
+      <packagedElement xmi:type="uml:Association" xmi:id="{AF100000-0000-0000-0000-000000000037}" name="" visibility="public">
+        <memberEnd xmi:idref="{A0100000-0000-0000-0000-000000000073}"/>
+        <memberEnd xmi:idref="{A0100000-0000-0000-0000-000000000074}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{A0100000-0000-0000-0000-000000000073}" name="" visibility="public" type="{AC100000-0000-0000-0000-000000000037}" association="{AF100000-0000-0000-0000-000000000037}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{A0100000-0000-0000-0000-000000000074}" name="" visibility="public" type="{AA100000-0000-0000-0000-000000000002}" association="{AF100000-0000-0000-0000-000000000037}"/>
+      </packagedElement>
+
+    </packagedElement>
+  </uml:Model>
+</xmi:XMI>

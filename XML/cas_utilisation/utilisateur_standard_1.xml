@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<diagram type="usecase" name="utilisateur_standard_1"
+         title="Cas d'utilisation — Utilisateur standard (1/2) : Authentification · Tableau de bord · Ventes · Commandes"
+         part="1 of 2" see-also="utilisateur_standard_2.xml">
+
+  <actors>
+    <actor id="U" name="Utilisateur (Admin / Vendeur)"/>
+  </actors>
+
+  <system name="Système AGSV">
+
+    <package name="Authentification">
+      <usecase id="UC_LOGIN"  name="Se connecter"/>
+      <usecase id="UC_MDP"    name="Modifier mot de passe"/>
+      <usecase id="UC_RESET"  name="Réinitialiser mot de passe"/>
+      <usecase id="UC_LOGOUT" name="Se déconnecter"/>
+    </package>
+
+    <package name="Tableau de bord">
+      <usecase id="UC_DASH" name="Consulter le tableau de bord"/>
+    </package>
+
+    <package name="Ventes">
+      <usecase id="UC_VENTE"         name="Enregistrer une vente"/>
+      <usecase id="UC_VENTE_LIST"    name="Consulter les ventes"/>
+      <usecase id="UC_VENTE_DETAIL"  name="Consulter le détail d'une vente"/>
+      <usecase id="UC_MODE_PAY"      name="Choisir mode de paiement"/>
+      <usecase id="UC_PAY_CASH"      name="Par espèces"/>
+      <usecase id="UC_PAY_MOBILE"    name="Par Mobile Money"/>
+      <usecase id="UC_PAY_LETTRE"    name="Par lettre d'échange"/>
+      <usecase id="UC_FACTURE"       name="Générer facture (PDF)"/>
+      <usecase id="UC_PRINT_FACTURE" name="Imprimer la facture"/>
+      <usecase id="UC_SEND_FACTURE"  name="Envoyer facture par email"/>
+      <usecase id="UC_BL"            name="Générer bon de livraison"   status="not-implemented"/>
+      <usecase id="UC_PRINT_BL"      name="Imprimer bon de livraison"  status="not-implemented"/>
+      <usecase id="UC_FRAIS_LIV"     name="Ajouter frais de livraison" status="not-implemented"/>
+    </package>
+
+    <package name="Commandes">
+      <usecase id="UC_CMD"          name="Enregistrer une commande"/>
+      <usecase id="UC_CMD_LIST"     name="Consulter les commandes"/>
+      <usecase id="UC_CMD_EDIT"     name="Modifier une commande"/>
+      <usecase id="UC_NOTIF_CLIENT" name="Notifier le client"/>
+    </package>
+
+  </system>
+
+  <relationships>
+    <!-- Associations acteur -->
+    <association actor="U" usecase="UC_LOGIN"/>
+    <association actor="U" usecase="UC_MDP"/>
+    <association actor="U" usecase="UC_RESET"/>
+    <association actor="U" usecase="UC_LOGOUT"/>
+    <association actor="U" usecase="UC_DASH"/>
+    <association actor="U" usecase="UC_VENTE"/>
+    <association actor="U" usecase="UC_VENTE_LIST"/>
+    <association actor="U" usecase="UC_VENTE_DETAIL"/>
+    <association actor="U" usecase="UC_CMD"/>
+    <association actor="U" usecase="UC_CMD_LIST"/>
+    <association actor="U" usecase="UC_CMD_EDIT"/>
+
+    <!-- Ventes — include -->
+    <include base="UC_VENTE" inclusion="UC_MODE_PAY"/>
+
+    <!-- Modes de paiement — généralisation -->
+    <generalization child="UC_PAY_CASH"   parent="UC_MODE_PAY"/>
+    <generalization child="UC_PAY_MOBILE" parent="UC_MODE_PAY"/>
+    <generalization child="UC_PAY_LETTRE" parent="UC_MODE_PAY"/>
+
+    <!-- Ventes — extend (extension pointe vers le cas de base) -->
+    <extend base="UC_VENTE"   extension="UC_FACTURE"/>
+    <extend base="UC_FACTURE" extension="UC_PRINT_FACTURE"/>
+    <extend base="UC_FACTURE" extension="UC_SEND_FACTURE"/>
+    <extend base="UC_VENTE"   extension="UC_BL"/>
+    <extend base="UC_BL"      extension="UC_PRINT_BL"/>
+    <extend base="UC_VENTE"   extension="UC_FRAIS_LIV"/>
+
+    <!-- Commandes — extend -->
+    <extend base="UC_CMD" extension="UC_VENTE"/>
+    <extend base="UC_CMD" extension="UC_NOTIF_CLIENT"/>
+  </relationships>
+
+</diagram>

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<diagram type="usecase" name="admin"
+         title="Cas d'utilisation — Administrateur"
+         see-also="utilisateur_standard_1.xml utilisateur_standard_2.xml">
+
+  <actors>
+    <actor id="A"    name="Administrateur"/>
+    <actor id="MAIL" name="Serveur Mail" stereotype="external"/>
+  </actors>
+
+  <system name="Système AGSV">
+
+    <package name="Fonctions communes (héritées)">
+      <usecase id="UC_STD" name="Voir utilisateur_standard_1.puml et utilisateur_standard_2.puml"/>
+    </package>
+
+    <package name="Produits et Catégories">
+      <usecase id="UC_PROD_ADD"  name="Créer un produit"/>
+      <usecase id="UC_PROD_EDIT" name="Modifier un produit"/>
+      <usecase id="UC_PROD_ACT"  name="Désactiver / Réactiver un produit"/>
+      <usecase id="UC_CAT"       name="Gérer les catégories"/>
+    </package>
+
+    <package name="Stock et Approvisionnement">
+      <usecase id="UC_APPRO"        name="Enregistrer un approvisionnement"/>
+      <usecase id="UC_APPRO_HIST"   name="Consulter l'historique des approvisionnements"/>
+      <usecase id="UC_NOTIF_CLIENT" name="Notifier le client"/>
+      <usecase id="UC_STOCK"        name="Consulter les mouvements de stock"/>
+    </package>
+
+    <package name="Inventaire">
+      <usecase id="UC_INV_PENDING" name="Consulter les inventaires en attente"/>
+      <usecase id="UC_INV_VAL"     name="Valider un inventaire"/>
+      <usecase id="UC_INV_REJ"     name="Refuser un inventaire"/>
+      <usecase id="UC_INV_HIST"    name="Consulter l'historique des inventaires"/>
+    </package>
+
+    <package name="Pertes">
+      <usecase id="UC_PERTE_ADD"  name="Déclarer une perte (côté admin)"/>
+      <usecase id="UC_PERTE_VAL"  name="Valider une perte"/>
+      <usecase id="UC_PERTE_REJ"  name="Refuser une perte"/>
+      <usecase id="UC_PERTE_HIST" name="Consulter l'historique des pertes"/>
+    </package>
+
+    <package name="Clients et Fournisseurs">
+      <usecase id="UC_CLIENT"     name="Gérer les clients (CRUD)"/>
+      <usecase id="UC_FOURN_ADD"  name="Enregistrer un fournisseur"/>
+      <usecase id="UC_FOURN_EDIT" name="Modifier un fournisseur"/>
+      <usecase id="UC_FOURN_ACT"  name="Désactiver / Réactiver un fournisseur"/>
+    </package>
+
+    <package name="Dépôts">
+      <usecase id="UC_DEPOT_ADD"  name="Ajouter un dépôt"/>
+      <usecase id="UC_DEPOT_EDIT" name="Modifier un dépôt"/>
+      <usecase id="UC_DEPOT_ACT"  name="Activer / désactiver un dépôt"/>
+    </package>
+
+    <package name="Utilisateurs">
+      <usecase id="UC_USER_ADD"  name="Enregistrer un vendeur ou administrateur"/>
+      <usecase id="UC_USER_EDIT" name="Modifier un utilisateur"/>
+      <usecase id="UC_USER_ACT"  name="Activer / désactiver un vendeur"/>
+      <usecase id="UC_USER_DEL"  name="Retirer / désactiver un vendeur"/>
+    </package>
+
+    <package name="Finances">
+      <usecase id="UC_LETTRE"     name="Gérer les lettres d'échange"/>
+      <usecase id="UC_CREANCES"   name="Suivre les créances de l'entreprise"/>
+      <usecase id="UC_RELEVE"     name="Générer relevé de dettes"/>
+      <usecase id="UC_CREDIT_PAY" name="Enregistrer un paiement sur crédit"/>
+    </package>
+
+    <package name="Rapports et Exports">
+      <usecase id="UC_RAPPORT"       name="Visualiser tous les rapports"/>
+      <usecase id="UC_EXPORT"        name="Exporter un rapport (PDF / Excel)"/>
+      <usecase id="UC_PERF_COMPARE"  name="Comparer les performances dans une entreprise"/>
+      <usecase id="UC_IMPORT"        name="Importer des données" status="not-implemented"/>
+    </package>
+
+    <package name="Alertes">
+      <usecase id="UC_ALERT"      name="Alerter au seuil de stock atteint"/>
+      <usecase id="UC_ALERT_LIST" name="Consulter les alertes"/>
+    </package>
+
+  </system>
+
+  <relationships>
+    <!-- Associations acteur -->
+    <association actor="A" usecase="UC_STD"/>
+    <association actor="A" usecase="UC_PROD_ADD"/>
+    <association actor="A" usecase="UC_PROD_EDIT"/>
+    <association actor="A" usecase="UC_PROD_ACT"/>
+    <association actor="A" usecase="UC_CAT"/>
+    <association actor="A" usecase="UC_APPRO"/>
+    <association actor="A" usecase="UC_APPRO_HIST"/>
+    <association actor="A" usecase="UC_STOCK"/>
+    <association actor="A" usecase="UC_INV_PENDING"/>
+    <association actor="A" usecase="UC_INV_VAL"/>
+    <association actor="A" usecase="UC_INV_REJ"/>
+    <association actor="A" usecase="UC_INV_HIST"/>
+    <association actor="A" usecase="UC_PERTE_ADD"/>
+    <association actor="A" usecase="UC_PERTE_VAL"/>
+    <association actor="A" usecase="UC_PERTE_REJ"/>
+    <association actor="A" usecase="UC_PERTE_HIST"/>
+    <association actor="A" usecase="UC_CLIENT"/>
+    <association actor="A" usecase="UC_FOURN_ADD"/>
+    <association actor="A" usecase="UC_FOURN_EDIT"/>
+    <association actor="A" usecase="UC_FOURN_ACT"/>
+    <association actor="A" usecase="UC_DEPOT_ADD"/>
+    <association actor="A" usecase="UC_DEPOT_EDIT"/>
+    <association actor="A" usecase="UC_DEPOT_ACT"/>
+    <association actor="A" usecase="UC_USER_ADD"/>
+    <association actor="A" usecase="UC_USER_EDIT"/>
+    <association actor="A" usecase="UC_USER_ACT"/>
+    <association actor="A" usecase="UC_USER_DEL"/>
+    <association actor="A" usecase="UC_LETTRE"/>
+    <association actor="A" usecase="UC_CREANCES"/>
+    <association actor="A" usecase="UC_RELEVE"/>
+    <association actor="A" usecase="UC_CREDIT_PAY"/>
+    <association actor="A" usecase="UC_RAPPORT"/>
+    <association actor="A" usecase="UC_EXPORT"/>
+    <association actor="A" usecase="UC_PERF_COMPARE"/>
+    <association actor="A" usecase="UC_IMPORT"/>
+    <association actor="A" usecase="UC_ALERT_LIST"/>
+
+    <!-- Approvisionnement — extend -->
+    <extend base="UC_APPRO" extension="UC_NOTIF_CLIENT"/>
+
+    <!-- Inventaire — include -->
+    <include base="UC_INV_VAL" inclusion="UC_STOCK"/>
+    <include base="UC_INV_REJ" inclusion="UC_STOCK"/>
+
+    <!-- Pertes — include -->
+    <include base="UC_PERTE_VAL" inclusion="UC_STOCK"/>
+
+    <!-- Finances — extend et include -->
+    <extend  base="UC_CREANCES" extension="UC_RELEVE"/>
+    <include base="UC_EXPORT"   inclusion="UC_RAPPORT"/>
+
+    <!-- Alertes — include et notification externe -->
+    <include    base="UC_ALERT" inclusion="UC_STOCK"/>
+    <dependency from="UC_ALERT" to="MAIL" stereotype="notifie"/>
+  </relationships>
+
+</diagram>

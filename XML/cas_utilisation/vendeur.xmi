@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1"
+    xmlns:xmi="http://schema.omg.org/spec/XMI/2.1"
+    xmlns:uml="http://schema.omg.org/spec/UML/2.1">
+
+  <xmi:Documentation exporter="Enterprise Architect" exporterVersion="6.5"/>
+
+  <uml:Model xmi:type="uml:Model" name="EA_Model" visibility="public">
+
+    <packagedElement xmi:type="uml:Package"
+                     xmi:id="{CB100000-0000-0000-0000-000000000001}"
+                     name="Vendeur"
+                     visibility="public">
+
+      <!-- ACTEUR -->
+      <packagedElement xmi:type="uml:Actor"
+                       xmi:id="{CA100000-0000-0000-0000-000000000001}"
+                       name="Vendeur"
+                       visibility="public"/>
+
+      <!-- PACKAGE : Fonctions communes (héritées) -->
+      <packagedElement xmi:type="uml:Package"
+                       xmi:id="{CB100000-0000-0000-0000-000000000002}"
+                       name="Fonctions communes (héritées)"
+                       visibility="public">
+        <packagedElement xmi:type="uml:UseCase"
+                         xmi:id="{CC100000-0000-0000-0000-000000000001}"
+                         name="Voir utilisateur_standard"
+                         visibility="public"/>
+      </packagedElement>
+
+      <!-- PACKAGE : Produits (lecture seule) -->
+      <packagedElement xmi:type="uml:Package"
+                       xmi:id="{CB100000-0000-0000-0000-000000000003}"
+                       name="Produits (lecture seule)"
+                       visibility="public">
+        <packagedElement xmi:type="uml:UseCase"
+                         xmi:id="{CC100000-0000-0000-0000-000000000002}"
+                         name="Consulter les produits de son dépôt"
+                         visibility="public"/>
+        <packagedElement xmi:type="uml:UseCase"
+                         xmi:id="{CC100000-0000-0000-0000-000000000003}"
+                         name="Voir les niveaux de stock de son dépôt"
+                         visibility="public"/>
+      </packagedElement>
+
+      <!-- PACKAGE : Inventaire -->
+      <packagedElement xmi:type="uml:Package"
+                       xmi:id="{CB100000-0000-0000-0000-000000000004}"
+                       name="Inventaire"
+                       visibility="public">
+        <packagedElement xmi:type="uml:UseCase"
+                         xmi:id="{CC100000-0000-0000-0000-000000000004}"
+                         name="Faire un inventaire"
+                         visibility="public"/>
+        <!-- UC_PERTE : extend UC_INV -->
+        <packagedElement xmi:type="uml:UseCase"
+                         xmi:id="{CC100000-0000-0000-0000-000000000005}"
+                         name="Déclarer une perte"
+                         visibility="public">
+          <extend xmi:type="uml:Extend"
+                  xmi:id="{CE100000-0000-0000-0000-000000000001}"
+                  name=""
+                  extendedCase="{CC100000-0000-0000-0000-000000000004}"/>
+        </packagedElement>
+      </packagedElement>
+
+      <!-- PACKAGE : Créances -->
+      <packagedElement xmi:type="uml:Package"
+                       xmi:id="{CB100000-0000-0000-0000-000000000005}"
+                       name="Créances"
+                       visibility="public">
+        <packagedElement xmi:type="uml:UseCase"
+                         xmi:id="{CC100000-0000-0000-0000-000000000006}"
+                         name="Suivre les créances de son dépôt"
+                         visibility="public"/>
+        <!-- UC_RELEVE : extend UC_CREANCES -->
+        <packagedElement xmi:type="uml:UseCase"
+                         xmi:id="{CC100000-0000-0000-0000-000000000007}"
+                         name="Générer relevé de dettes"
+                         visibility="public">
+          <extend xmi:type="uml:Extend"
+                  xmi:id="{CE100000-0000-0000-0000-000000000002}"
+                  name=""
+                  extendedCase="{CC100000-0000-0000-0000-000000000006}"/>
+        </packagedElement>
+        <!-- UC_RELEVE_MAIL : extend UC_RELEVE -->
+        <packagedElement xmi:type="uml:UseCase"
+                         xmi:id="{CC100000-0000-0000-0000-000000000008}"
+                         name="Envoyer relevé par email"
+                         visibility="public">
+          <extend xmi:type="uml:Extend"
+                  xmi:id="{CE100000-0000-0000-0000-000000000003}"
+                  name=""
+                  extendedCase="{CC100000-0000-0000-0000-000000000007}"/>
+        </packagedElement>
+      </packagedElement>
+
+      <!-- PACKAGE : Performances -->
+      <packagedElement xmi:type="uml:Package"
+                       xmi:id="{CB100000-0000-0000-0000-000000000006}"
+                       name="Performances"
+                       visibility="public">
+        <packagedElement xmi:type="uml:UseCase"
+                         xmi:id="{CC100000-0000-0000-0000-000000000009}"
+                         name="Consulter ses performances"
+                         visibility="public"/>
+      </packagedElement>
+
+      <!-- PACKAGE : Clients -->
+      <packagedElement xmi:type="uml:Package"
+                       xmi:id="{CB100000-0000-0000-0000-000000000007}"
+                       name="Clients"
+                       visibility="public">
+        <packagedElement xmi:type="uml:UseCase"
+                         xmi:id="{CC100000-0000-0000-0000-000000000010}"
+                         name="Consulter les clients du dépôt"
+                         visibility="public"/>
+        <packagedElement xmi:type="uml:UseCase"
+                         xmi:id="{CC100000-0000-0000-0000-000000000011}"
+                         name="Ajouter un client"
+                         visibility="public"/>
+      </packagedElement>
+
+      <!-- ASSOCIATIONS : Vendeur → Cas d'utilisation -->
+      <packagedElement xmi:type="uml:Association" xmi:id="{CF100000-0000-0000-0000-000000000001}" name="" visibility="public">
+        <memberEnd xmi:idref="{C0100000-0000-0000-0000-000000000001}"/>
+        <memberEnd xmi:idref="{C0100000-0000-0000-0000-000000000002}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{C0100000-0000-0000-0000-000000000001}" name="" visibility="public" type="{CA100000-0000-0000-0000-000000000001}" association="{CF100000-0000-0000-0000-000000000001}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{C0100000-0000-0000-0000-000000000002}" name="" visibility="public" type="{CC100000-0000-0000-0000-000000000001}" association="{CF100000-0000-0000-0000-000000000001}"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="{CF100000-0000-0000-0000-000000000002}" name="" visibility="public">
+        <memberEnd xmi:idref="{C0100000-0000-0000-0000-000000000003}"/>
+        <memberEnd xmi:idref="{C0100000-0000-0000-0000-000000000004}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{C0100000-0000-0000-0000-000000000003}" name="" visibility="public" type="{CA100000-0000-0000-0000-000000000001}" association="{CF100000-0000-0000-0000-000000000002}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{C0100000-0000-0000-0000-000000000004}" name="" visibility="public" type="{CC100000-0000-0000-0000-000000000002}" association="{CF100000-0000-0000-0000-000000000002}"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="{CF100000-0000-0000-0000-000000000003}" name="" visibility="public">
+        <memberEnd xmi:idref="{C0100000-0000-0000-0000-000000000005}"/>
+        <memberEnd xmi:idref="{C0100000-0000-0000-0000-000000000006}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{C0100000-0000-0000-0000-000000000005}" name="" visibility="public" type="{CA100000-0000-0000-0000-000000000001}" association="{CF100000-0000-0000-0000-000000000003}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{C0100000-0000-0000-0000-000000000006}" name="" visibility="public" type="{CC100000-0000-0000-0000-000000000003}" association="{CF100000-0000-0000-0000-000000000003}"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="{CF100000-0000-0000-0000-000000000004}" name="" visibility="public">
+        <memberEnd xmi:idref="{C0100000-0000-0000-0000-000000000007}"/>
+        <memberEnd xmi:idref="{C0100000-0000-0000-0000-000000000008}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{C0100000-0000-0000-0000-000000000007}" name="" visibility="public" type="{CA100000-0000-0000-0000-000000000001}" association="{CF100000-0000-0000-0000-000000000004}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{C0100000-0000-0000-0000-000000000008}" name="" visibility="public" type="{CC100000-0000-0000-0000-000000000004}" association="{CF100000-0000-0000-0000-000000000004}"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="{CF100000-0000-0000-0000-000000000005}" name="" visibility="public">
+        <memberEnd xmi:idref="{C0100000-0000-0000-0000-000000000009}"/>
+        <memberEnd xmi:idref="{C0100000-0000-0000-0000-000000000010}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{C0100000-0000-0000-0000-000000000009}" name="" visibility="public" type="{CA100000-0000-0000-0000-000000000001}" association="{CF100000-0000-0000-0000-000000000005}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{C0100000-0000-0000-0000-000000000010}" name="" visibility="public" type="{CC100000-0000-0000-0000-000000000005}" association="{CF100000-0000-0000-0000-000000000005}"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="{CF100000-0000-0000-0000-000000000006}" name="" visibility="public">
+        <memberEnd xmi:idref="{C0100000-0000-0000-0000-000000000011}"/>
+        <memberEnd xmi:idref="{C0100000-0000-0000-0000-000000000012}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{C0100000-0000-0000-0000-000000000011}" name="" visibility="public" type="{CA100000-0000-0000-0000-000000000001}" association="{CF100000-0000-0000-0000-000000000006}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{C0100000-0000-0000-0000-000000000012}" name="" visibility="public" type="{CC100000-0000-0000-0000-000000000006}" association="{CF100000-0000-0000-0000-000000000006}"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="{CF100000-0000-0000-0000-000000000007}" name="" visibility="public">
+        <memberEnd xmi:idref="{C0100000-0000-0000-0000-000000000013}"/>
+        <memberEnd xmi:idref="{C0100000-0000-0000-0000-000000000014}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{C0100000-0000-0000-0000-000000000013}" name="" visibility="public" type="{CA100000-0000-0000-0000-000000000001}" association="{CF100000-0000-0000-0000-000000000007}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{C0100000-0000-0000-0000-000000000014}" name="" visibility="public" type="{CC100000-0000-0000-0000-000000000009}" association="{CF100000-0000-0000-0000-000000000007}"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="{CF100000-0000-0000-0000-000000000008}" name="" visibility="public">
+        <memberEnd xmi:idref="{C0100000-0000-0000-0000-000000000015}"/>
+        <memberEnd xmi:idref="{C0100000-0000-0000-0000-000000000016}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{C0100000-0000-0000-0000-000000000015}" name="" visibility="public" type="{CA100000-0000-0000-0000-000000000001}" association="{CF100000-0000-0000-0000-000000000008}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{C0100000-0000-0000-0000-000000000016}" name="" visibility="public" type="{CC100000-0000-0000-0000-000000000010}" association="{CF100000-0000-0000-0000-000000000008}"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="{CF100000-0000-0000-0000-000000000009}" name="" visibility="public">
+        <memberEnd xmi:idref="{C0100000-0000-0000-0000-000000000017}"/>
+        <memberEnd xmi:idref="{C0100000-0000-0000-0000-000000000018}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{C0100000-0000-0000-0000-000000000017}" name="" visibility="public" type="{CA100000-0000-0000-0000-000000000001}" association="{CF100000-0000-0000-0000-000000000009}"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="{C0100000-0000-0000-0000-000000000018}" name="" visibility="public" type="{CC100000-0000-0000-0000-000000000011}" association="{CF100000-0000-0000-0000-000000000009}"/>
+      </packagedElement>
+
+    </packagedElement>
+  </uml:Model>
+</xmi:XMI>

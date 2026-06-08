@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<diagram type="usecase" name="vendeur"
+         title="Cas d'utilisation — Vendeur"
+         see-also="utilisateur_standard_1.xml utilisateur_standard_2.xml">
+
+  <actors>
+    <actor id="V" name="Vendeur"/>
+  </actors>
+
+  <system name="Système AGSV">
+
+    <package name="Fonctions communes (héritées)">
+      <usecase id="UC_STD" name="Voir utilisateur_standard_1.puml et utilisateur_standard_2.puml"/>
+    </package>
+
+    <package name="Produits (lecture seule)">
+      <usecase id="UC_PROD"  name="Consulter les produits de son dépôt"/>
+      <usecase id="UC_STOCK" name="Voir les niveaux de stock de son dépôt"/>
+    </package>
+
+    <package name="Inventaire">
+      <usecase id="UC_INV"   name="Faire un inventaire"/>
+      <usecase id="UC_PERTE" name="Déclarer une perte"/>
+    </package>
+
+    <package name="Créances">
+      <usecase id="UC_CREANCES"    name="Suivre les créances de son dépôt"/>
+      <usecase id="UC_RELEVE"      name="Générer relevé de dettes"  status="not-implemented"/>
+      <usecase id="UC_RELEVE_MAIL" name="Envoyer relevé par email"  status="not-implemented"/>
+    </package>
+
+    <package name="Performances">
+      <usecase id="UC_PERF" name="Consulter ses performances"/>
+    </package>
+
+    <package name="Clients">
+      <usecase id="UC_CLIENT"     name="Consulter les clients du dépôt"/>
+      <usecase id="UC_CLIENT_ADD" name="Ajouter un client"/>
+    </package>
+
+  </system>
+
+  <relationships>
+    <!-- Associations acteur -->
+    <association actor="V" usecase="UC_STD"/>
+    <association actor="V" usecase="UC_PROD"/>
+    <association actor="V" usecase="UC_STOCK"/>
+    <association actor="V" usecase="UC_INV"/>
+    <association actor="V" usecase="UC_PERTE"/>
+    <association actor="V" usecase="UC_CREANCES"/>
+    <association actor="V" usecase="UC_PERF"/>
+    <association actor="V" usecase="UC_CLIENT"/>
+    <association actor="V" usecase="UC_CLIENT_ADD"/>
+
+    <!-- Inventaire — extend -->
+    <extend base="UC_INV" extension="UC_PERTE"/>
+
+    <!-- Créances — extend -->
+    <extend base="UC_CREANCES" extension="UC_RELEVE"/>
+    <extend base="UC_RELEVE"   extension="UC_RELEVE_MAIL"/>
+  </relationships>
+
+</diagram>
